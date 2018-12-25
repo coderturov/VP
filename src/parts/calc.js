@@ -133,6 +133,11 @@ function calc() {
     let form = document.querySelectorAll('.form'),
         statusMessage = document.createElement('div'),
         phoneInputs = document.querySelectorAll('input[type="tel"]');
+    document.body.addEventListener('click', function (event) {
+        if (event.target.parentNode.classList.contains('popup_close') || event.target.classList.contains('popup_engineer')) {
+            statusMessage.innerHTML = '';
+        }
+    });
 
 
     for (let i = 0; i < phoneInputs.length; i++) {
@@ -201,6 +206,9 @@ function calc() {
                 for (let i = 0; i < inputs.length; i++) {
                     inputs[i].value = '';
                 }
+                setTimeout(function() {
+                    statusMessage.innerHTML = ''; 
+                }, 5000); 
             }
 
             postData(formData)
